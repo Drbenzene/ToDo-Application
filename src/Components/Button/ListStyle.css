@@ -1,0 +1,17 @@
+.tasksList:hover {
+    cursor: pointer;
+    /* text-decoration: line-through; */
+}
+
+.tasks {
+    text-decoration: line-through;
+    color: rgb(129, 246, 129);
+}
+
+.taskdelete {
+    display: none;
+}
+
+.delete {
+    display: block;
+}
