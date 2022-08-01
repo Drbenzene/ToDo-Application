@@ -8,12 +8,11 @@ import Swal from "sweetalert2";
 import nextId from "react-id-generator";
 
 function Button() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(localStorage.tasks? JSON.parse(localStorage.tasks) : []);
 
   useEffect(() => { 
-
-    let tasks = localStorage.getItem("tasks");
-    console.log("tasks", tasks)
+    
+   localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks])
   
 
@@ -115,6 +114,7 @@ const swalWithBootstrapButtons = Swal.mixin({
           </ul>
         </div>
       </div>
+      <div></div>
       <button className={styles.button} onClick={clickHandler}>
         <AiFillPlusCircle /> New Task
       </button>

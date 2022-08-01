@@ -27,12 +27,24 @@
 }
 
 .container {
-    font: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
-    margin: 20px 25vw;
-    padding: 20px 0px;
-    height: 60vh;
+    /* min-height: 60vh; */
+}
+
+.task {
+    width: 50vw;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     #0a254059 0px -2px 6px 0px inset;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .task {
+        width: 90vw;
+    }
+}
+    
