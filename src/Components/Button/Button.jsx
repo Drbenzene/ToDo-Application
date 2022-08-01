@@ -45,35 +45,45 @@ function Button() {
   };
 
   const clearClick = () => {
+
+    if (tasks.length === 0) {
+      Swal.fire({
+        title: "No tasks to clear",
+        icon: "info",
+        showConfirmButton: true,
+      });
+    } else {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete all Tasks!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'Your tasks has been deleted.',
+            'success'
+          )
+          setTasks([])
+          localStorage.setItem('tasks', JSON.stringify(tasks))
+        } 
+      })
+      }
+    }
      
-const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: false
-  })
-  
-  swalWithBootstrapButtons.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, delete all Tasks!',
-    cancelButtonText: 'No, cancel!',
-    reverseButtons: true
-  }).then((result) => {
-    if (result.isConfirmed) {
-      swalWithBootstrapButtons.fire(
-        'Deleted!',
-        'Your tasks has been deleted.',
-        'success'
-      )
-      setTasks([])
-      localStorage.setItem('tasks', JSON.stringify(tasks))
-    } 
-  })
-  }
+
 
 
   const editClick = async (id) => {
